@@ -1,0 +1,25 @@
+/* Custom Active/Inactive Filter Styles */
+.active-filter {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.inactive-filter {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  color: #94a3b8;
+}
+
+.inactive-filter:hover {
+  color: #e2e8f0;
+}
+
+/* Card Hover Effects */
+.resource-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.resource-card:hover {
+  border-color: #334155;
+  transform: translateY(-2px);
+}
