@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickVault - Student Resource Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/20">
+          <i class="fa-solid fa-bookmark text-white"></i>
+        </div>
+        <span class="font-bold text-lg tracking-tight">QuickVault</span>
+      </div>
+      <button id="openModalBtn" class="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Resource</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Dashboard -->
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <!-- Controls Bar -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div class="relative flex-1 max-w-md">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" placeholder="Search resources, notes, or links..." className="" class="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-500 transition-colors" />
+      </div>
+
+      <div class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0" id="categoryFilterContainer">
+        <button class="filter-btn active-filter px-4 py-2 rounded-xl text-sm font-medium transition-colors" data-category="All">All</button>
+        <button class="filter-btn inactive-filter px-4 py-2 rounded-xl text-sm font-medium transition-colors" data-category="Code">Code</button>
+        <button class="filter-btn inactive-filter px-4 py-2 rounded-xl text-sm font-medium transition-colors" data-category="Notes">Notes</button>
+        <button class="filter-btn inactive-filter px-4 py-2 rounded-xl text-sm font-medium transition-colors" data-category="Tool">Tool</button>
+      </div>
+    </div>
+
+    <!-- Resource Grid Container -->
+    <div id="resourceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Dynamic Card Items Render Here -->
+    </div>
+  </main>
+
+  <!-- Add Resource Modal -->
+  <div id="modalOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl">
+      <h2 class="text-lg font-semibold mb-4">Add New Resource</h2>
+      <form id="resourceForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Title</label>
+          <input type="text" id="titleInput" required placeholder="e.g., Next.js Documentation" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-600" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Category</label>
+            <select id="categorySelect" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-100">
+              <option value="Code">Code</option>
+              <option value="Notes">Notes</option>
+              <option value="Tool">Tool</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">URL / Link</label>
+            <input type="url" id="urlInput" required placeholder="https://..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-600" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wider">Description</label>
+          <textarea id="descInput" rows="3" placeholder="Brief notes or details..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 text-slate-100 placeholder-slate-600 resize-none"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end space-x-3 pt-2">
+          <button type="button" id="closeModalBtn" class="px-4 py-2 rounded-xl text-sm font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-sm font-medium bg-indigo-600 hover:bg-indigo-500 text-white transition-colors shadow-sm">Save Resource</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
